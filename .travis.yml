@@ -2,8 +2,18 @@ language: node_js
 node_js:
   - "stable"
  dist: focal
+branch:
+  only:
+  - main
+cache:
+  directories:
+  -node_modules
+install:
+  -npm install
+  -npm install -g yarn
 script:
-  - npm test
+  -yarn build
+  -mv build/index.html build404/.html
 deploy:
   provider: pages
   skip_cleanup: true
